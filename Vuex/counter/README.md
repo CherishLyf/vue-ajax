@@ -1,27 +1,7 @@
-# counter
+整个应用中数据流是单向的, 正如 Flux 所定义的那样:
 
-> vuex-counter
+1. 用户在组件中输入操作触发 action 调用   <br/>
+2. Actions 通过分发 mutations 来修改 store 实例的状态   <br/>
+3. Store 实例的状态变化反过来又通过 getters 被组件获知
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+![vuex](/static/vuex.png)
