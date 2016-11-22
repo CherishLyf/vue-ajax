@@ -14,14 +14,15 @@ export default {
 </script>
 
 <style>
+@import './assets/fonts/iconfont.css';
+@import './assets/reset.css';
 body {
   background: #fafafa;
   font-family:Tahoma,Arial,Roboto,'Droid Sans','Helvetica Neue','Droid Sans Fallback','Heiti SC',sans-self;
 }
-ul, li, h1, h2, h3, h4, h5, p {
-  padding: 0;
-  margin: 0;
+html,body {
+  position: relative;
+  height: 100%;
 }
-li { list-style: none;}
-/*@import './assets/reset.css';*/
+
 </style>
