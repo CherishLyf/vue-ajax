@@ -1,5 +1,6 @@
 
 <style lang="scss" scoped>
+
 .cart-footer {
   position: fixed;
   width: 100%;
@@ -33,18 +34,19 @@
       content: '';
     }
     .number-badge {
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       display: block;
       position: absolute;
       background-color: #ff461d;
       border-radius: 50%;
-      right: -5px;
-      top: -7px;
+      right: -6px;
+      top: -8px;
       text-align: center;
       color: #fff;
-      line-height: 15px;
-      font-size: 10px;
+      line-height: 16px;
+      font-size: 12px;
+      border: none;
     }
     position: absolute;
     left: 20px;
@@ -74,14 +76,29 @@
     }
   }
 }
+
+
+.shake {
+  animation: pulse .5s .2s ease both;
+}
+
+@keyframes pulse {
+  0%{ transform:scale(1) }
+  50%{ transform:scale(1.2) }
+  100%{ transform:scale(1) }
+}
+
 </style>
 <template lang="html">
   <div class="container">
     <div v-if="selectedNum == 1" class="cart-view">
       <div class="cart-footer">
-        <div class="cart-icon" :class="{ empty: cartNum == 0 }">
+        <div class="cart-icon" :class="{ empty: cartNum == 0, shake: isShake }">
           <p class="number-badge">{{ cartNum }}</p>
         </div>
+        <p class="cart-price">
+          ￥99
+        </p>
         <a href="#" class="submitbutton" :class="{ disabled: cartNum == 0 }">去结算</a>
       </div>
     </div>
@@ -92,6 +109,11 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  data () {
+    return {
+      isShake: false
+    }
+  },
   props: ['selectedNum'],
   computed: {
     ...mapGetters({
@@ -100,7 +122,19 @@ export default {
     cartNum () {
       return this.cart.reduce((total, p) => {
         return total + p.foodCount
-      }, 0)
+      }, 0);
+    }
+  },
+  watch: {
+    cartNum (newVal, oldVal) {
+      var self = this;
+      if (newVal > oldVal) {
+        self.isShake = true
+        setTimeout(function () {
+          self.isShake = false
+        }, 1000)
+      }
+
     }
   }
 }

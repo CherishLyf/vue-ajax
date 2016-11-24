@@ -1,6 +1,7 @@
 const state = {
   products: [
-    { id: 1, foodImg: './static/logo.png', name: '黑暗料理', monthSale: 666, foodPrice: 66.66, foodCount: 0 }
+    { id: 1, foodImg: './static/logo.png', name: '黑暗料理', monthSale: 666, foodPrice: 66.66, foodCount: 0 },
+    { id: 2, foodImg: './static/logo.png', name: '黑暗料理-2', monthSale: 666, foodPrice: 6.66, foodCount: 0 }
   ],
   cart: []
 }

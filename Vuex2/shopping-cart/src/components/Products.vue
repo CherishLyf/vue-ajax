@@ -9,7 +9,7 @@
       <mt-tab-item id="2">评价</mt-tab-item>
       <mt-tab-item id="3">商家</mt-tab-item>
     </mt-navbar>
-    <mt-tab-container v-model="selected">
+    <mt-tab-container v-model="selected" swipeable>
       <mt-tab-container-item id="1">
         <!-- <mt-cell v-for="n in 10" title="tab-container 1"></mt-cell> -->
         <product-list></product-list>
@@ -53,5 +53,5 @@ export default {
       font-size: 14px;
     }
   }
-
+  
 </style>
