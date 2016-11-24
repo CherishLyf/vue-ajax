@@ -32,6 +32,20 @@
       background-size: 35px auto;
       content: '';
     }
+    .number-badge {
+      width: 15px;
+      height: 15px;
+      display: block;
+      position: absolute;
+      background-color: #ff461d;
+      border-radius: 50%;
+      right: -5px;
+      top: -7px;
+      text-align: center;
+      color: #fff;
+      line-height: 15px;
+      font-size: 10px;
+    }
     position: absolute;
     left: 20px;
     bottom: 10px;
@@ -54,6 +68,7 @@
     font-size: 18px;
     font-weight: 700;
     color: #fff;
+    background-color: #4cd964;
     &.disabled {
       background-color: #535356;
     }
@@ -64,19 +79,30 @@
   <div class="container">
     <div v-if="selectedNum == 1" class="cart-view">
       <div class="cart-footer">
-        <div class="cart-icon empty">
-
+        <div class="cart-icon" :class="{ empty: cartNum == 0 }">
+          <p class="number-badge">{{ cartNum }}</p>
         </div>
-        <a href="#" class="submitbutton disabled">去结算</a>
+        <a href="#" class="submitbutton" :class="{ disabled: cartNum == 0 }">去结算</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
-  props: ['selectedNum']
+  props: ['selectedNum'],
+  computed: {
+    ...mapGetters({
+      cart: 'getCart'
+    }),
+    cartNum () {
+      return this.cart.reduce((total, p) => {
+        return total + p.foodCount
+      }, 0)
+    }
+  }
 }
 
 </script>

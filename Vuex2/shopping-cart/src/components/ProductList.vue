@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 .container {
   position: relative;
-  height: 100%;
+  // height: 100%;
 }
 .product-item {
   width: 100%;
@@ -102,11 +102,11 @@
           <h4 class="product-subTitle">月售{{ item.monthSale }}份</h4>
           <p class="product-price">￥{{ item.foodPrice }}</p>
           <div class="product-number">
-            <span class="product-minus" @click="minusCount(index)" v-if="item.foodCount > 0">
+            <span class="product-minus" v-if="item.foodCount > 0">
               <i class='icon-minus iconfont'></i>
             </span>
             <span class="product-count" v-if="item.foodCount > 0" style="border: none;">{{ item.foodCount }}</span>
-            <span class="product-add" @click="addCount(index)">
+            <span class="product-add" @click="addToCart(item)">
               <i class='icon-add iconfont'></i>
             </span>
           </div>
@@ -117,21 +117,26 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import { addToCart } from '../vuex/actions'
 
 export default {
   data () {
     return {
-      products: [
-        { foodImg: './static/logo.png', name: '黑暗料理', monthSale: 666, foodPrice: 66.66, foodCount: 0 }
-      ]
+      // products: [
+      //   { foodImg: './static/logo.png', name: '黑暗料理', monthSale: 666, foodPrice: 66.66, foodCount: 0 }
+      // ]
     }
   },
+  computed: mapGetters({
+    products: 'getProducts'
+  }),
   methods: {
-    addCount (index) {
-      var item = this.products[index];
-
-      item.foodCount ++;
-    },
+    ...mapActions(['addToCart']),
+    // addCount (index) {
+    //   var item = this.products[index];
+    //   this.$store.dispatch('addToCart', item)
+    // },
     minusCount (index) {
       var item = this.products[index];
 
