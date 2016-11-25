@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 .container {
   position: relative;
-  // height: 100%;
+  height: 100%;
 }
 .product-item {
   width: 100%;
@@ -12,8 +12,8 @@
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
-  box-shadow: 1px 1px 0 0 #ddd;
   position: relative;
+  margin-bottom: 10px;
 
   .product-left {
     display: block;
@@ -102,7 +102,7 @@
           <h4 class="product-subTitle">月售{{ item.monthSale }}份</h4>
           <p class="product-price">￥{{ item.foodPrice }}</p>
           <div class="product-number">
-            <span class="product-minus" v-if="item.foodCount > 0">
+            <span class="product-minus" @click="minusToCart(item)" v-if="item.foodCount > 0">
               <i class='icon-minus iconfont'></i>
             </span>
             <span class="product-count" v-if="item.foodCount > 0" style="border: none;">{{ item.foodCount }}</span>
@@ -118,7 +118,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { addToCart } from '../vuex/actions'
+import { addToCart, minusToCart } from '../vuex/actions'
 
 export default {
   data () {
@@ -133,19 +133,7 @@ export default {
   }),
   methods: {
     ...mapActions(['addToCart']),
-    // addCount (index) {
-    //   var item = this.products[index];
-    //   this.$store.dispatch('addToCart', item)
-    // },
-    minusCount (index) {
-      var item = this.products[index];
-
-      item.foodCount --;
-
-      if (item.foodCount == 0) {
-        return
-      }
-    }
+    ...mapActions(['minusToCart'])
   }
 }
 

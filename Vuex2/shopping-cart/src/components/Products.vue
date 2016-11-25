@@ -43,15 +43,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .container {
-    position: relative;
-    // height: 100%;
-  }
+  // .container {
+  //   position: relative;
+  //   height: 100%;
+  // }
   .page-part {
     margin-bottom: 15px;
     .nav-item {
       font-size: 14px;
     }
   }
-  
+
 </style>

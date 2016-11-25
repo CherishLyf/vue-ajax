@@ -5,9 +5,11 @@ import VueTouch from 'vue-touch'
 import App from './App.vue'
 import store from './vuex'
 import './util/util'
+import { currency } from './util/currency'
 
 Vue.use(VueTouch)
 Vue.use(MintUI)
+Vue.filter('currency', currency)
 
 
 /* eslint-disable no-new */
